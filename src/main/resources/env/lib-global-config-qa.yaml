@@ -1,0 +1,19 @@
+https:
+  port: "8082"
+  connection.idle.timeout: "30000"
+  host: "0.0.0.0"
+splunk:
+  host: "http-inputs-intmonitor.splunkcloud.com"
+  port: "443"
+  auth: "![kXvpeO/dUbX+0Uy4xx0Z6voBRX2zFNzrW12keaDgaEQIlrA+G8Zb9/toF4T3XTjg]"
+  send.to.splunk: "false"
+  reconnection.frequency: "3000"
+  reconnection.attempts: "3"
+  path: "services/collector"  
+  vm.messages: "100"
+  vm.persistent: "false"
+keystore:
+  path: "esbinternal-keystore.jks"
+  alias: "*.esb.internal.hertz.com"
+  key.password: "![+9JhTr+J90sfDj0G70ttdg==]"
+  password: "![+9JhTr+J90sfDj0G70ttdg==]"

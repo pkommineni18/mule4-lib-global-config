@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:audit-logger="http://www.mulesoft.org/schema/mule/audit-logger" 
+	xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd
+http://www.mulesoft.org/schema/mule/audit-logger http://www.mulesoft.org/schema/mule/audit-logger/current/mule-audit-logger.xsd">
+	<secure-properties:config name="lib-global-config_Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="d2233437-5ade-40b3-9271-285ae9535348" file="env/lib-global-config-${mule.env}.yaml" key="${property.key}" />
+	<http:listener-config name="global-api-httpListenerConfig" doc:name="HTTP Listener config" doc:id="be04c22e-822d-4a68-adf6-87e5f9d0ffea" >
+		<http:listener-connection host="${secure::https.host}" port="${secure::https.port}" connectionIdleTimeout="${secure::https.connection.idle.timeout}" protocol="HTTPS">
+			<tls:context >
+				<tls:key-store type="jks" path="keystore/${secure::keystore.path}" alias="${secure::keystore.alias}" keyPassword="${secure::keystore.key.password}" password="${secure::keystore.password}" />
+			</tls:context>
+		</http:listener-connection>
+	</http:listener-config>
+	<audit-logger:config name="lib-global-auditLogger_Config" doc:name="AuditLogger Config" doc:id="194a8ffc-7f5d-4a59-aeec-e2c0abd69382" splunkHost="${secure::splunk.host}" splunkPort="${secure::splunk.port}" splunkPath="${secure::splunk.path}" splunkAuth="${secure::splunk.auth}" splunkReconnectionFrequency="${secure::splunk.reconnection.frequency}" splunkReconnectionAttempts="${secure::splunk.reconnection.attempts}" vmMessages="${secure::splunk.vm.messages}" send2Splunk="${secure::splunk.send.to.splunk}" vmPersistent="${secure::splunk.vm.persistent}"/>
+	</mule>

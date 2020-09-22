@@ -1,0 +1,22 @@
+{
+  "configs": [
+    "global-config.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "lib-global-config",
+  "minMuleVersion": "4.1.2",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+    "exportedResources": [
+        "global-config.xml"
+        ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}
